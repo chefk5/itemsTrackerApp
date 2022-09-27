@@ -3,7 +3,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["react", "@typescript-eslint", "prettier", "jest"],
   "extends": [
-    "eslint:recommended",
+    // "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
@@ -12,12 +12,21 @@
   ],
   "rules": {
     "no-console": 1,
-    "prettier/prettier": 2,
+    "prettier/prettier": ["error", { "singleQuote": true }],
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",
     "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error"
+    "jest/valid-expect": "error",
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ]
   },
   "settings": {
     "react": {
