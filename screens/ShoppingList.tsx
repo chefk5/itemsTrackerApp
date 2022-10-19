@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 type Props = {
   name: string;
 };
-const ShoppingList: React.FC<Props> = () => {
+const ShoppingList = () => {
   return (
     <View style={styles.container}>
       <Text>ShoppingList</Text>

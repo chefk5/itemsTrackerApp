@@ -1,10 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import useGlobalStyles from '../hooks/GlobalStyles';
+const AddCounter = () => {
+  const globalStyles = useGlobalStyles();
 
-const AddCounter: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>AddCounter</Text>
+    <View>
+      <Text style={globalStyles.container}>AddCounter</Text>
     </View>
   );
 };

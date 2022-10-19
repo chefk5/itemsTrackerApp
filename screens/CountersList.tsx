@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import ItemCounter from '../compenents/countersList/ItemCounter';
+//mport { MainNavigationProp, MainRoutes } from '../navigation/Types';
 
-type Props = {
-  name: string;
-};
-const CountersList: React.FC<Props> = () => {
+//type Props = { navigation: MainNavigationProp<MainRoutes.CountersList> };
+
+const CountersList = () => {
   return (
     <View style={styles.container}>
-      <Text>CountersList</Text>
+      <ItemCounter name={'item 1'} />
     </View>
   );
 };
 
-export { CountersList };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: '#fff',
   },
 });
+
+export { CountersList };
