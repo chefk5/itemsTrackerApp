@@ -9,7 +9,7 @@ import {
   LightTheme,
   ExtendedTheme,
 } from '@react-navigation/native';
-import { light, dark } from '../styles/Themes';
+import { light, dark } from '../../styles/Themes';
 
 const MainNavigation = () => {
   const scheme = Appearance.getColorScheme();

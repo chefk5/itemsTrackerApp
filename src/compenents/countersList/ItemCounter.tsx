@@ -1,28 +1,29 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { ActionCreatorWithoutPayload, PayloadAction } from '@reduxjs/toolkit';
 
 interface Props {
   name: string;
+  counter: number | undefined;
+  id: string;
+  increment: (id: string) => void;
+  decrement: (id: string) => void;
 }
 
-const ItemCounter = ({ name }: Props) => {
+const ItemCounter = ({ id, name, counter, increment, decrement }: Props) => {
   return (
     <View style={styles.container}>
       <Text>{name}</Text>
       <View style={styles.counterContainer}>
-        <TouchableOpacity>
-          <Text>
-            <Icon name="minus" size={30} color="#4F8EF7" />
-          </Text>
+        <TouchableOpacity onPress={() => decrement(id)}>
+          <Text>-</Text>
         </TouchableOpacity>
         <View>
-          <Text>1</Text>
+          <Text testID={'counter'}>{counter}</Text>
         </View>
-        <TouchableOpacity>
-          <Text>
-            <Icon name="plus" size={30} color="#4F8EF7" />
-          </Text>
+        <TouchableOpacity onPress={() => increment(id)}>
+          <Text>add</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
   counterContainer: {
     flexDirection: 'row',
