@@ -1,11 +1,9 @@
+import React from 'react';
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
-import MainNavigation from './src/navigation/MainNavigation';
-import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-get-random-values';
 import { Provider } from 'react-redux';
 import { store } from './src/app/store';
-
+import MainNavigation from './src/navigation/MainNavigation';
 const App = () => {
   return (
     <Provider store={store}>
@@ -15,11 +13,3 @@ const App = () => {
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-  },
-});

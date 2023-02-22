@@ -1,18 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../../app/store';
+import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
+import type { RootState } from '../../app/store';
+import { Item, ItemData, ItemsState } from '../../app/types';
 
 // Define a type for the slice state
-interface Item {
-  id: string;
-  name?: string;
-  count?: number;
-}
-
-interface ItemsState {
-  items: Array<Item>;
-}
 
 // Define the initial state using that type
 const initialState: ItemsState = {
@@ -37,7 +29,6 @@ export const itemsSlice = createSlice({
   reducers: {
     increment: (state, action: PayloadAction<Item>) => {
       const { id } = action.payload;
-      console.log('here');
       const selectedItem = state.items.find((item) => item.id === id);
       if (selectedItem && selectedItem.count !== undefined) {
         selectedItem.count = selectedItem.count + 1;
@@ -54,16 +45,16 @@ export const itemsSlice = createSlice({
         selectedItem.count--;
       }
     },
-    addItem: (state, action: PayloadAction<Item>) => {
-      const { id, name, count } = action.payload;
+    addItem: (state, action: PayloadAction<ItemData>) => {
+      const { name, count } = action.payload;
       state.items.push({ id: uuid(), name: name, count: count });
     },
 
     updateItem: (state, action: PayloadAction<Item>) => {
-      const { id, name, count } = action.payload;
+      const { id, name } = action.payload;
       const selectedItem = state.items.find((item) => item.id === id);
       if (selectedItem) {
-        state.items.push({ id: uuid(), name: name, count: count });
+        selectedItem.name = name;
       }
     },
     deleteItem: (state, action: PayloadAction<Item>) => {
@@ -76,7 +67,8 @@ export const itemsSlice = createSlice({
   },
 });
 
-export const { increment, decrement, addItem, updateItem } = itemsSlice.actions;
+export const { increment, decrement, addItem, updateItem, deleteItem } =
+  itemsSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const itemsList = (state: RootState) => state.items;

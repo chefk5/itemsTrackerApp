@@ -7,12 +7,14 @@ export enum MainRoutes {
   CountersList = 'CountersList',
   ShoppingList = 'ShoppingList',
   AddCounter = 'AddCounter',
+  UpdateItem = 'UpdateItem',
 }
 
 export type MainStackParamList = {
-  [MainRoutes.CountersList]: undefined;
+  [MainRoutes.CountersList]: { id: string } | undefined;
   [MainRoutes.ShoppingList]: undefined;
   [MainRoutes.AddCounter]: undefined;
+  [MainRoutes.UpdateItem]: { id: string } | undefined;
 };
 
 export type MainNavigationProp<

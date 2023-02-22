@@ -1,21 +1,20 @@
-import React from 'react';
-import { MainRoutes, MainStack } from './Types';
 import { NavigationContainer } from '@react-navigation/native';
-import { AddCounter, ShoppingList, CountersList } from '../screens/Index';
-import { Appearance, AppearanceProvider } from 'react-native';
+import React from 'react';
+import { Appearance } from 'react-native';
+// import { light } from '../../styles/Themes';
 import {
-  DefaultTheme,
-  DarkTheme,
-  LightTheme,
-  ExtendedTheme,
-} from '@react-navigation/native';
-import { light, dark } from '../../styles/Themes';
+  AddCounter,
+  CountersList,
+  ShoppingList,
+  UpdateItem,
+} from '../screens/Index';
+import { MainRoutes, MainStack } from './Types';
 
 const MainNavigation = () => {
   const scheme = Appearance.getColorScheme();
 
   return (
-    <NavigationContainer theme={light}>
+    <NavigationContainer>
       <MainStack.Navigator>
         <MainStack.Screen
           name={MainRoutes.CountersList}
@@ -26,6 +25,7 @@ const MainNavigation = () => {
           component={ShoppingList}
         />
         <MainStack.Screen name={MainRoutes.AddCounter} component={AddCounter} />
+        <MainStack.Screen name={MainRoutes.UpdateItem} component={UpdateItem} />
       </MainStack.Navigator>
     </NavigationContainer>
   );

@@ -1,21 +1,18 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../features/counter/ItemsSlice';
-// import useGlobalStyles from '../hooks/GlobalStyles';
+import { updateItem } from '../features/counter/ItemsSlice';
 
-const AddCounter = () => {
-  // const globalStyles = useGlobalStyles();
+const UpdateItem = ({ route }) => {
   const [itemName, setItemName] = useState<string>('');
-  const [count, setCount] = useState<string>('');
 
   const dispatch = useDispatch();
 
   const submitItems = () => {
-    if (itemName != '' && count != '') {
-      dispatch(addItem({ name: itemName, count: Number(count) }));
+    if (itemName != '') {
+      dispatch(updateItem({ id: route.params.id, name: itemName }));
       setItemName('');
-      setCount('');
     }
   };
 
@@ -26,18 +23,12 @@ const AddCounter = () => {
         value={itemName}
         onChangeText={(text) => setItemName(text)}
       />
-      <TextInput
-        placeholder="Initial count"
-        keyboardType="numeric"
-        value={count}
-        onChangeText={(text) => setCount(text)}
-      />
-      <Button title="Add" onPress={submitItems} />
+      <Button title="Edit" onPress={submitItems} />
     </View>
   );
 };
 
-export { AddCounter };
+export { UpdateItem };
 
 const styles = StyleSheet.create({
   container: {
