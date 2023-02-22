@@ -1,19 +1,37 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { ActionCreatorWithoutPayload, PayloadAction } from '@reduxjs/toolkit';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 interface Props {
-  name: string;
+  name: string | undefined;
   counter: number | undefined;
   id: string;
   increment: (id: string) => void;
   decrement: (id: string) => void;
+  deleteItem: (id: string) => void;
+  moveToEdit: (id: string) => void;
 }
 
-const ItemCounter = ({ id, name, counter, increment, decrement }: Props) => {
+const ItemCounter = ({
+  id,
+  name,
+  counter,
+  increment,
+  decrement,
+  deleteItem,
+  moveToEdit,
+}: Props) => {
   return (
-    <View style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onLongPress={() => deleteItem(id)}
+      onPress={() => moveToEdit(id)}
+    >
       <Text>{name}</Text>
       <View style={styles.counterContainer}>
         <TouchableOpacity onPress={() => decrement(id)}>
@@ -26,7 +44,7 @@ const ItemCounter = ({ id, name, counter, increment, decrement }: Props) => {
           <Text>add</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </Pressable>
   );
 };
 
